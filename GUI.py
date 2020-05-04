@@ -4,10 +4,13 @@ root = Tk()
 root.geometry("1300x600")
 root.bg = "green"
 root.title("PRESENT WRAPPING AND GIFT CARDS")
-global colourFill
+#global colourFill #there is no need to call them global if you're not declaring it inside a function
 colourFill = StringVar()
+
+#Frame creation
 Top_Frame = Frame(root, width=1350, height=100, bd=12, relief="raise", bg="Green")
 Top_Frame.grid(row=0)
+
 MainTitle = Label(Top_Frame, font=("arial", 30, "bold"), text="WELCOME TO BIBS PRESENT WRAPPING & GIFT CARDS")
 MainTitle.grid(row=0, column=0)
 
@@ -25,167 +28,143 @@ Canvas_Frame.grid(row=1, column=1)
 Colour_Frame_Button = Frame(Paper_Type_Main_Frame, width=300, height=300, bd=4, relief="raise")
 Colour_Frame_Button.grid(row=2, column=1)
 
-varCheapPattern = IntVar()
-varCheapPattern.set(0)
-varExpensivePattern = IntVar()
-varExpensivePattern.set(0)
-var_Cube = IntVar()
-var_Cube.set(0)
-var_Cuboid = IntVar()
-var_Cuboid.set(0)
-var_Cylinder = IntVar()
-var_Cylinder.set(0)
-varCheapPaper = StringVar()
-varCheapPaper.set('0')
-varExpensivePaper = StringVar()
-varExpensivePaper.set('0')
-varBow = StringVar()
-varBow.set('0')
-varGiftCardFlatRate = StringVar()
-varGiftCardFlatRate.set("0")
-varGiftCardPerCharacterRate = StringVar()
-varGiftCardPerCharacterRate.set(' ')
+CheapPattern = IntVar()
+CheapPattern.set(0)
+ExpensivePattern = IntVar()
+ExpensivePattern.set(0)
+Cube = IntVar()
+Cube.set(0)
+Cuboid = IntVar()
+Cuboid.set(0)
+Cylinder = IntVar()
+Cylinder.set(0)
+CheapPaper = StringVar()
+CheapPaper.set('0')
+ExpensivePaper = StringVar()
+ExpensivePaper.set('0')
+Bow = StringVar()
+Bow.set('0')
+GiftCardFlatRate = StringVar()
+GiftCardFlatRate.set("0")
+GiftCardPerCharacterRate = StringVar()
+GiftCardPerCharacterRate.set(' ')
 
 Present = Label(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), text="PAPER TYPE, BOW & CARDS")
 Present.grid(row=0, column=0)
-CheapPaper = Checkbutton(Paper_Type_Tops_Frame, text="Cheap Paper\t\t\t\t£0.04p per cm2", variable=varCheapPaper,
-                         onvalue=1, offvalue=0, font=("arial", 18, "bold")).grid(row=1, column=0, sticky=W)
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=varCheapPaper, width=6, state=NORMAL).grid(row=1,
-                                                                                                                 column=1)
-ExpensivePaper = Checkbutton(Paper_Type_Tops_Frame, text="Expensive Paper\t\t\t\t£0.75p per cm2",
-                             variable=varExpensivePaper, onvalue=1, offvalue=0, font=("arial", 18, "bold")).grid(row=2,
-                                                                                                                 column=0,
-                                                                                                                 sticky=W)
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=varExpensivePaper, width=6,
-      state=NORMAL).grid(row=2, column=1)
-Bow = Checkbutton(Paper_Type_Tops_Frame, text="Bow\t\t\t\t\t£1.50p", variable=varBow, onvalue=1, offvalue=0,
-                  font=("arial", 18, "bold")).grid(row=3, column=0, sticky=W)
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=varBow, width=6, state=NORMAL).grid(row=3,
-                                                                                                          column=1)
-GiftCardFlatRate = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card (Flat Rate\t\t\t£0.50p)",
-                               variable=varGiftCardFlatRate, onvalue=1, offvalue=0, font=("arial", 18, "bold")).grid(
-    row=4,
-    column=0, sticky=W)
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=varGiftCardFlatRate, width=6, state=NORMAL).grid(
-    row=4, column=1)
-GiftCardPerCharacterRate = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card (Per Character Rate £0.02p)",
-                                       variable=varGiftCardPerCharacterRate, font=("arial", 18, "bold")).grid(row=5,
-                                                                                                              column=0,
-                                                                                                              sticky=W)
 
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=varGiftCardPerCharacterRate, width=10,
+CheapPaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Cheap Paper\t\t\t\t£0.04p per cm2", variable=CheapPaper,
+                         onvalue=1, offvalue=0, font=("arial", 18, "bold")).grid(row=1, column=0, sticky=W)
+
+Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=CheapPaper,
+      width=6, state=NORMAL).grid(row=1, column=1) #remember, code needs to be as easy to read as possible
+
+ExpensivePaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Expensive Paper\t\t\t\t£0.75p per cm2", #remember to add descriptive names, such as _button
+                             variable=ExpensivePaper, onvalue=1, offvalue=0,
+                             font=("arial", 18, "bold")).grid(row=2,column=0,sticky=W)
+
+Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=ExpensivePaper, width=6,
+      state=NORMAL).grid(row=2, column=1)
+Bow_button = Checkbutton(Paper_Type_Tops_Frame, text="Bow\t\t\t\t\t£1.50p", variable=Bow, onvalue=1, offvalue=0,
+                  font=("arial", 18, "bold")).grid(row=3, column=0, sticky=W)
+Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=Bow, width=6, state=NORMAL).grid(row=3,
+                                                                                                          column=1)
+GiftCardFlatRate_button = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card (Flat Rate\t\t\t£0.50p)",
+                               variable=GiftCardFlatRate, onvalue=1, offvalue=0,
+                               font=("arial", 18, "bold")).grid(row=4,column=0, sticky=W)
+
+Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=GiftCardFlatRate,
+      width=6, state=NORMAL).grid(row=4, column=1)
+
+GiftCardPerCharacterRate_button = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card (Per Character Rate £0.02p)",
+                                       variable=GiftCardPerCharacterRate,
+                                       font=("arial", 18, "bold")).grid(row=5,column=0, sticky=W)
+
+Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=GiftCardPerCharacterRate, width=10,
       state=NORMAL).grid(row=5, column=1)
 
-#M: I can probably make this better also
+#M: Focus on the buttons and make the calculation work!!!
 Presents = Label(Present_Type_Frame, font=("arial", 18, "bold"), text="Present Types Shapes\t\t")
 Presents.grid(row=0, column=1)
-Checkbutton(Present_Type_Frame, text='Cube Shape Sizes\t\t\t', variable=var_Cube).grid(row=1, column=0, sticky=W)
+Checkbutton(Present_Type_Frame, text='Cube Shape Sizes\t\t\t', variable=Cube).grid(row=1, column=0, sticky=W)
 Label(Present_Type_Frame, text='Length', justify='right').grid(row=3, column=0)
-Entry(Present_Type_Frame, width=6, textvariable=var_Cube).grid(row=3, column=0, sticky=W)
-Checkbutton(Present_Type_Frame, text='Cuboid Shape Sizes', variable=var_Cuboid).grid(row=1, column=1, sticky=W)
-Entry(Present_Type_Frame, width=6, textvariable=var_Cuboid).grid(row=2, column=1, sticky=W)
+Entry(Present_Type_Frame, width=6, textvariable=Cube).grid(row=3, column=0, sticky=W)
+Checkbutton(Present_Type_Frame, text='Cuboid Shape Sizes', variable=Cuboid).grid(row=1, column=1, sticky=W)
+Entry(Present_Type_Frame, width=6, textvariable=Cuboid).grid(row=2, column=1, sticky=W)
 Label(Present_Type_Frame, text='Length', justify='right').grid(row=2, column=1)
-Entry(Present_Type_Frame, width=6, textvariable=var_Cuboid).grid(row=3, column=1, sticky=W)
+Entry(Present_Type_Frame, width=6, textvariable=Cuboid).grid(row=3, column=1, sticky=W)
 Label(Present_Type_Frame, text='Height', justify='right').grid(row=3, column=1)
-Entry(Present_Type_Frame, width=6, textvariable=var_Cuboid).grid(row=4, column=1, sticky=W)
+Entry(Present_Type_Frame, width=6, textvariable=Cuboid).grid(row=4, column=1, sticky=W)
 Label(Present_Type_Frame, text='Width', justify='right').grid(row=4, column=1)
-Checkbutton(Present_Type_Frame, text='Cylinder Shape Sizes', variable=var_Cylinder).grid(row=1, column=2, sticky=W)
-Entry(Present_Type_Frame, width=6, textvariable=var_Cylinder).grid(row=2, column=2, sticky=W)
+Checkbutton(Present_Type_Frame, text='Cylinder Shape Sizes', variable=Cylinder).grid(row=1, column=2, sticky=W)
+Entry(Present_Type_Frame, width=6, textvariable=Cylinder).grid(row=2, column=2, sticky=W)
 Label(Present_Type_Frame, text='Height', justify='right').grid(row=3, column=0)
-Entry(Present_Type_Frame, width=6, textvariable=var_Cylinder).grid(row=3, column=2, sticky=W)
+Entry(Present_Type_Frame, width=6, textvariable=Cylinder).grid(row=3, column=2, sticky=W)
 Label(Present_Type_Frame, text='Radius', justify='right').grid(row=3, column=0)
 
-
 def Reset_Button():
-    var_Cube.set(0)
-    var_Cuboid.set(0)
-    var_Cylinder.set(0)
-    varGiftCardPerCharacterRate.set(' ')
-    varGiftCardFlatRate.set('0')
-    varCheapPaper.set('0')
-    varExpensivePaper.set('0')
-    varBow.set('0')
-    var_Cube.get()
-    cheapPattern()
-    ColorEReset()
-    ColorCReset()
-    expensivePattern()
-    varCheapPattern.set(0)
-    varExpensivePattern.set(0)
+    Cube.set(0)
+    Cuboid.set(0)
+    Cylinder.set(0)
+    GiftCardPerCharacterRate.set(' ')
+    GiftCardFlatRate.set('0')
+    CheapPaper.set('0')
+    ExpensivePaper.set('0')
+    Bow.set('0')
+    Cube.get()
+    CreateCheapPattern()
+    ColorReset()
+    CreateExpensivePattern()
+    CheapPattern.set(0)
+    ExpensivePattern.set(0)
 
-
-def cheapPattern_1():
-    if varCheapPattern.get() == 1:
+def CreateCheapPattern_1():
+    if CheapPattern.get() == 1:
         Check_Cheap.configure(state=NORMAL)
-    elif varCheapPattern.get() == 0:
-        Check_Cheap.configure(state=DISABLED)
+    elif CheapPattern.get() == 0:
+        Check_Cheap.configure(state=DISABLED) #unused function??
 
-
-def expensivePattern_1():
-    if varExpensivePattern.get() == 1:
+def CreateExpensivePattern_1():
+    if ExpensivePattern.get() == 1:
         Check_Expensive.configure(state=NORMAL)
-    elif varExpensivePattern.get() == 0:
+    elif ExpensivePattern.get() == 0:
         Check_Expensive.configure(state=DISABLED)
 
+def ColorReset():
+    colourFill.set("white")
 
-def ColorCReset():
-    varCheapPaper.set(0)
+def Update(): #this helps repeat much less code
+    if ExpensivePattern.get() == 1:
+        CreateExpensivePattern()
+    if CheapPattern.get() == 1:
+        CreateCheapPattern()
 
-
-def ColorEReset():
-    varCheapPaper.set(0)
-    return
-
-
+#Color definitions
 def Purple():
     colourFill.set("purple")
-    if varExpensivePaper.get() == 1:
-        expensivePattern()
-    elif varCheapPaper.get() == 1:
-        cheapPattern()
-
+    Update()
 
 def DarkSlateGray():
     colourFill.set("DarkSlateGray4")
-    if varExpensivePaper.get() == 1:
-        expensivePattern()
-    elif varCheapPaper.get() == 1:
-        cheapPattern()
-
+    Update()
 
 def DeepSkyBlue():
     colourFill.set("DeepSkyBlue")
-    if varExpensivePaper.get() == 1:
-        expensivePattern()
-    elif varCheapPaper.get() == 1:
-        cheapPattern()
-
+    Update()
 
 def LightSeaGreen():
     colourFill.set("LightSeaGreen")
-    if varExpensivePaper.get() == 1:
-        expensivePattern()
-    elif varCheapPaper.get() == 1:
-        cheapPattern()
-
+    Update()
 
 def VioletRed():
     colourFill.set("VioletRed")
-    if varExpensivePaper.get() == 1:
-        expensivePattern()
-    elif varCheapPaper.get() == 1:
-        cheapPattern()
-
+    Update()
 
 def Gold():
     colourFill.set("Gold")
-    if varExpensivePaper.get() == 1:
-        expensivePattern()
-    elif varCheapPaper.get() == 1:
-        cheapPattern()
+    Update()
 
 #M
-def cheapPattern():
+def CreateCheapPattern():
     Cheap_Canvas = Canvas(Canvas_Frame, width=300, height=300)
     Cheap_Canvas.grid(row=0, column=0, columnspan=5, rowspan=5)
 
@@ -197,7 +176,6 @@ def cheapPattern():
         for repetition in range(0,4):
             col2_altered.append(value)
     col2=col2_altered
-    print(col2)
     col3=[75,150,225,300]*10 #repeats every 4
     col4=col2 #they're the same, so let's keep it equal
     col5=[55,130,205,280]*10 #repeats every 4
@@ -207,19 +185,20 @@ def cheapPattern():
         for repetition in range(0,4): #Do this 4x before going forward
             col6_altered.append(value)
     col6=col6_altered
-    print(col6)
     col7=[20,95,170,245]*10 #repeats every 4
     col8=col6
 
-    for number in range(0,40): #as we need polygons, let's create the polygons with a for loop
+    for number in range(0,40): #as we need poly, let's create the polygons with a for loop
         Cheap_Canvas.create_polygon(col1[number],col2[number],col3[number],col4[number],
                                     col5[number],col6[number],col7[number],col8[number],
                                     fill=colourFill.get(),outline="black")
-    ColorCReset()
+    ExpensivePattern.set(0)
+    CheapPattern.set(1)##
+    ColorReset()
 #\M
 
 #Below I've hidden the code from the first attempt
-# def cheapPattern(): #M: This is something that you should avoid at all cost. Substitute for loops or use numpy
+# def CreateCheapPattern(): #M: This is something that you should avoid at all cost. Substitute for loops or use numpy
 #     Cheap_Canvas = Canvas(Canvas_Frame, width=300, height=300)
 #     Cheap_Canvas.grid(row=0, column=0, columnspan=5, rowspan=5)
 #     Cheap_Canvas.create_polygon(0, 30, 75, 30, 55, 0, 20, 0, fill=colourFill.get(), outline="black")
@@ -265,7 +244,7 @@ def cheapPattern():
 #     ColorCReset()
 
 
-def expensivePattern(): #M: Also avoid
+def CreateExpensivePattern(): #M: Also avoid, but it's small enough to keep, remember to wheight what is less time consuming
     Expensive_Canvas = Canvas(Canvas_Frame, width=300, height=300)
     Expensive_Canvas.grid(row=0, column=0, columnspan=5, rowspan=5)
     Expensive_Canvas.create_rectangle(0, 0, 150, 150, fill=colourFill.get(), outline='black')
@@ -278,23 +257,24 @@ def expensivePattern(): #M: Also avoid
     Expensive_Canvas.create_rectangle(0, 240, 60, 300, fill=colourFill.get(), outline='black')
     Expensive_Canvas.create_rectangle(0, 270, 30, 300, fill='white', outline='black')
     Expensive_Canvas.create_rectangle(270, 30, 300, 0, fill='white', outline='black')
-    ColorEReset()
 
+    CheapPattern.set(0)##
+    ExpensivePattern.set(1)
+    ColorReset()
 
-Check_Cheap = Checkbutton(Colour_Frame_Button, text='cheap pattern', variable=varCheapPattern, command=cheapPattern)
+Check_Cheap = Checkbutton(Colour_Frame_Button, text='cheap pattern', variable=CheapPattern, command=CreateCheapPattern)
 Check_Cheap.grid(row=0, column=0, sticky=NSEW)
-Check_Expensive = Checkbutton(Colour_Frame_Button, text='expensive pattern', variable=varExpensivePattern,
-                              command=expensivePattern)
+Check_Expensive = Checkbutton(Colour_Frame_Button, text='expensive pattern', variable=ExpensivePattern,
+                              command=CreateExpensivePattern)
 Check_Expensive.grid(row=0, column=3, sticky=NSEW)
 
-#M: I think he could probably optimize this (show him)
+#colour buttons
 buttonPurple = Button(Colour_Frame_Button, text="Purple", bg="Purple", command=Purple)
 buttonPurple.grid(row=2, column=0, sticky=NSEW)
 buttonDarkSlateGray = Button(Colour_Frame_Button, text="Dark Slate Gray", bg="DarkSlateGray4", command=DarkSlateGray)
 buttonDarkSlateGray.grid(row=2, column=1, sticky=NSEW)
 buttonDeepSkyBlue = Button(Colour_Frame_Button, text="Deep Sky Blue", bg="Deep Sky Blue", command=DeepSkyBlue)
 buttonDeepSkyBlue.grid(row=2, column=2, sticky=NSEW)
-
 buttonLightSeaGreen = Button(Colour_Frame_Button, text="Light Sea Green", bg="Light Sea Green", command=LightSeaGreen)
 buttonLightSeaGreen.grid(row=3, column=0, sticky=NSEW)
 buttonVioletRed = Button(Colour_Frame_Button, text="VioletRed", bg="VioletRed2", command=VioletRed)

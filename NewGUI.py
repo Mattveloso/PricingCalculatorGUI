@@ -1,6 +1,4 @@
 
-
-
 #M
 def cheapPattern():
     Cheap_Canvas = Canvas(Canvas_Frame, width=300, height=300)
