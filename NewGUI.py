@@ -1,3 +1,6 @@
+#use this one for testing random code! easier to test than changing your entire other program
+
+
 from tkinter import *
 
 root = Tk()
