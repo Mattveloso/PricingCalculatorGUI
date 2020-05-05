@@ -11,15 +11,15 @@ colourFill = StringVar()
 Top_Frame = Frame(root, width=1350, height=100, bd=12, relief="raise", bg="#263D42")
 Top_Frame.grid(row=0)
 
-MainTitle = Label(Top_Frame, font=("arial", 30, "bold"), text="Bibs Presents")
+MainTitle = Label(Top_Frame, font=("arial", 30, "bold"), text="Bibs Wrapping", bg="#263D42",fg="White")
 MainTitle.grid(padx=100)
 
-BottomMainFrame = Frame(root, width=1350, height=800, bd=4, relief="raise",bg="black")
+BottomMainFrame = Frame(root, width=1350, height=800, bd=4, relief="raise",bg="#263D42")
 BottomMainFrame.grid(row=1)
 
-Paper_Type_Main_Frame = Frame(BottomMainFrame, width=300, height=800, bd=4, relief="raise", bg='black')
+Paper_Type_Main_Frame = Frame(BottomMainFrame, width=300, height=800, bd=4, relief="raise", bg='#263D42')
 Paper_Type_Main_Frame.grid(row=0, column=0)
-Paper_Type_Tops_Frame = Frame(Paper_Type_Main_Frame, width=300, height=200, bd=4, relief="raise")
+Paper_Type_Tops_Frame = Frame(Paper_Type_Main_Frame, width=300, height=200, bd=4, relief="raise", bg="#263D42")
 Paper_Type_Tops_Frame.grid(row=1, column=0,pady=50)
 Present_Type_Title_Frame=Frame(Paper_Type_Main_Frame, width=300, height=200, bd=4, relief="raise")
 Present_Type_Title_Frame.grid(row=2)
@@ -87,6 +87,14 @@ def Reset_Button(): #After resetting, user cannot choose colours since they must
     ExpensivePattern.set(0)
     CheapPaper.set('0')
     ExpensivePaper.set('0')
+    CubeSize.set(0)
+    CuboidHeight.set(0)
+    CuboidLength.set(0)
+    CuboidWidth.set(0)
+    CylinderHeight.set(0)
+    CylinderRadius.set(0)
+    GiftCardPerCharacter_Characters.set('Please Type your message here')
+
 
 def ColorReset():
     colourFill.set("white")
@@ -226,37 +234,37 @@ def CreateExpensivePattern(): #M: Also avoid, but it's small enough to keep, rem
     ExpensivePaper.set(1)
     ColorReset()
 
-Present = Label(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), text="PAPER TYPE, BOW & CARDS")
+Present = Label(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), text="PAPER TYPE, BOW & CARDS",bg="#263D42",foreground="white")
 Present.grid(row=0, column=0, columnspan=2)
 
 StandardFont=("arial", 18, "bold") #avoids repetition
 #Papertype and calculation of price
-CheapPaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Cheap Paper", variable=CheapPaper,
+CheapPaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Cheap Paper", variable=CheapPaper, bg="#263D42",
                          onvalue=1, offvalue=0, font=("arial", 18, "bold"),command=CreateCheapPattern).grid(row=1, column=0, sticky=W)
-CheapPaperPriceLabel= Label(Paper_Type_Tops_Frame,text='£0.04p per cm²',font=StandardFont).grid(row=1,column=1,sticky=W) #by putting it in another column you get more control over the look of your GUI
+CheapPaperPriceLabel= Label(Paper_Type_Tops_Frame,text='£0.04p per cm²',bg="#263D42",font=StandardFont).grid(row=1,column=1,sticky=W) #by putting it in another column you get more control over the look of your GUI
 #CheapPaper_Entry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=CheapPaper,
 #      width=6, state=NORMAL).grid(row=1, column=1) #remember, code needs to be as easy to read as possible
 
-ExpensivePaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Expensive Paper", #remember to add descriptive names, such as _button
+ExpensivePaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Expensive Paper", bg="#263D42", #remember to add descriptive names, such as _button
                              variable=ExpensivePaper, onvalue=1, offvalue=0,
                              font=("arial", 18, "bold"),command=CreateExpensivePattern).grid(row=2,column=0,sticky=W)
-ExpensiePaperPriceLabel = Label(Paper_Type_Tops_Frame, text='£0.75p per cm²', font=StandardFont).grid(row=2,column=1,sticky=W)
+ExpensiePaperPriceLabel = Label(Paper_Type_Tops_Frame, text='£0.75p per cm²',bg="#263D42", font=StandardFont).grid(row=2,column=1,sticky=W)
 #ExpensivePaperEntry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=ExpensivePaper, width=6,
 #      state=NORMAL).grid(row=2, column=1)
 
-Bow_button = Checkbutton(Paper_Type_Tops_Frame, text="Bow", variable=Bow, onvalue=1, offvalue=0,
+Bow_button = Checkbutton(Paper_Type_Tops_Frame,bg="#263D42", text="Bow", variable=Bow, onvalue=1, offvalue=0,
                   font=("arial", 18, "bold")).grid(row=3, column=0, sticky=W)
-BowPriceLabel=Label(Paper_Type_Tops_Frame, text='£1.50p',font=StandardFont).grid(row=3,column=1,sticky=W)
+BowPriceLabel=Label(Paper_Type_Tops_Frame,bg="#263D42", text='£1.50p',font=StandardFont).grid(row=3,column=1,sticky=W)
 #Bow_Entry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=Bow, width=6, state=NORMAL).grid(row=3,
 #                                                                                                          column=1)
 GiftCardFlatRate_button = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card",
-                               variable=GiftCardFlatRate, onvalue=1, offvalue=0,
+                               variable=GiftCardFlatRate, onvalue=1, offvalue=0,bg="#263D42",
                                font=("arial", 18, "bold")).grid(row=4,column=0, sticky=W)
-GiftCardFlatRateLabel = Label(Paper_Type_Tops_Frame, text='(Flat Rate: £0.50p)',font=StandardFont).grid(row=4,column=1,sticky=W)
+GiftCardFlatRateLabel = Label(Paper_Type_Tops_Frame,bg="#263D42", text='(Flat Rate: £0.50p)',font=StandardFont).grid(row=4,column=1,sticky=W)
 #GiftCardFlatRate_Entry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=GiftCardFlatRate,
 #      width=6, state=NORMAL).grid(row=4, column=1)
 
-GiftCardPerCharacterRate_button = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card (Per Character Rate £0.02p)",
+GiftCardPerCharacterRate_button = Checkbutton(Paper_Type_Tops_Frame,bg="#263D42", text="Gift Card (Per Character Rate £0.02p)",
                                        variable=GiftCardPerCharacterRate,
                                        font=("arial", 18, "bold")).grid(row=5,column=0, sticky=W)
 GiftCardCharacters=Entry(Paper_Type_Tops_Frame, font=("arial", 12), textvariable=GiftCardPerCharacter_Characters,
