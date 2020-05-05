@@ -1,7 +1,16 @@
 from tkinter import *
 
+root = Tk()
 
+a= IntVar()
+a.set(0)
+b=IntVar()
+b.set(3)
+c=a.get()
+d=b.get()
+print(a.get()*b.get())
 
+# %%
 
 
 #M

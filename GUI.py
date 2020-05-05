@@ -1,7 +1,7 @@
 from tkinter import *
 
 root = Tk()
-root.geometry("1300x700")
+root.geometry("1150x700")
 root.bg = "green"
 root.title("PRESENT WRAPPING AND GIFT CARDS")
 #global colourFill #there is no need to call them global if you're not declaring it inside a function
@@ -29,7 +29,8 @@ Canvas_Frame = Frame(Paper_Type_Main_Frame, width=300, height=300, bd=4, relief=
 Canvas_Frame.grid(row=1, column=1)
 Colour_Frame_Button = Frame(Paper_Type_Main_Frame, width=300, height=300, bd=4, relief="raise")
 Colour_Frame_Button.grid(row=2, column=1)
-
+Price_Frame=Frame(Paper_Type_Main_Frame,width=200,height=50,bd=4,relief='raise')
+Price_Frame.grid(row=3,column=1)
 
 #you were missing the descriptions in comments to simplify the variables
 CheapPattern = IntVar() #binary variable to set pattern
@@ -52,6 +53,10 @@ GiftCardFlatRate = StringVar()
 GiftCardFlatRate.set("0")
 GiftCardPerCharacterRate = StringVar()
 GiftCardPerCharacterRate.set(' ')
+GiftCardPerCharacter_Characters= StringVar()
+GiftCardPerCharacter_Characters.set('Please Type your message here')
+Price=IntVar()
+Price.set(0)
 
 #new variables - these are necessary because you can't do the calculation without them
 CubeSize = IntVar()
@@ -68,36 +73,41 @@ CuboidWidth=IntVar()
 CuboidWidth.set(0)
 
 Present = Label(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), text="PAPER TYPE, BOW & CARDS")
-Present.grid(row=0, column=0)
+Present.grid(row=0, column=0, columnspan=2)
 
-
+StandardFont=("arial", 18, "bold") #avoids repetition
 #Papertype and calculation of price
-CheapPaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Cheap Paper\t\t\t\t£0.04p per cm2", variable=CheapPaper,
-                         onvalue=1, offvalue=0, font=("arial", 18, "bold")).grid(row=1, column=0, sticky=W)
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=CheapPaper,
-      width=6, state=NORMAL).grid(row=1, column=1) #remember, code needs to be as easy to read as possible
+CheapPaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Cheap Paper", variable=CheapPaper,
+                         onvalue=1, offvalue=0, font=("arial", 18, "bold"),command=CreateCheapPattern).grid(row=1, column=0, sticky=W)
+CheapPaperPriceLabel= Label(Paper_Type_Tops_Frame,text='£0.04p per cm²',font=StandardFont).grid(row=1,column=1,sticky=W) #by putting it in another column you get more control over the look of your GUI
+#CheapPaper_Entry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=CheapPaper,
+#      width=6, state=NORMAL).grid(row=1, column=1) #remember, code needs to be as easy to read as possible
 
-ExpensivePaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Expensive Paper\t\t\t\t£0.75p per cm2", #remember to add descriptive names, such as _button
+ExpensivePaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Expensive Paper", #remember to add descriptive names, such as _button
                              variable=ExpensivePaper, onvalue=1, offvalue=0,
-                             font=("arial", 18, "bold")).grid(row=2,column=0,sticky=W)
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=ExpensivePaper, width=6,
-      state=NORMAL).grid(row=2, column=1)
+                             font=("arial", 18, "bold"),command=CreateExpensivePattern).grid(row=2,column=0,sticky=W)
+ExpensiePaperPriceLabel = Label(Paper_Type_Tops_Frame, text='£0.75p per cm²', font=StandardFont).grid(row=2,column=1,sticky=W)
+#ExpensivePaperEntry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=ExpensivePaper, width=6,
+#      state=NORMAL).grid(row=2, column=1)
 
-Bow_button = Checkbutton(Paper_Type_Tops_Frame, text="Bow\t\t\t\t\t£1.50p", variable=Bow, onvalue=1, offvalue=0,
+Bow_button = Checkbutton(Paper_Type_Tops_Frame, text="Bow", variable=Bow, onvalue=1, offvalue=0,
                   font=("arial", 18, "bold")).grid(row=3, column=0, sticky=W)
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=Bow, width=6, state=NORMAL).grid(row=3,
-                                                                                                          column=1)
-GiftCardFlatRate_button = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card (Flat Rate\t\t\t£0.50p)",
+BowPriceLabel=Label(Paper_Type_Tops_Frame, text='£1.50p',font=StandardFont).grid(row=3,column=1,sticky=W)
+#Bow_Entry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=Bow, width=6, state=NORMAL).grid(row=3,
+#                                                                                                          column=1)
+GiftCardFlatRate_button = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card",
                                variable=GiftCardFlatRate, onvalue=1, offvalue=0,
                                font=("arial", 18, "bold")).grid(row=4,column=0, sticky=W)
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=GiftCardFlatRate,
-      width=6, state=NORMAL).grid(row=4, column=1)
+GiftCardFlatRateLabel = Label(Paper_Type_Tops_Frame, text='(Flat Rate: £0.50p)',font=StandardFont).grid(row=4,column=1,sticky=W)
+#GiftCardFlatRate_Entry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=GiftCardFlatRate,
+#      width=6, state=NORMAL).grid(row=4, column=1)
 
 GiftCardPerCharacterRate_button = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card (Per Character Rate £0.02p)",
                                        variable=GiftCardPerCharacterRate,
                                        font=("arial", 18, "bold")).grid(row=5,column=0, sticky=W)
-Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=GiftCardPerCharacterRate, width=10,
-      state=NORMAL).grid(row=5, column=1)
+GiftCardCharacters=Entry(Paper_Type_Tops_Frame, font=("arial", 12), textvariable=GiftCardPerCharacter_Characters,
+                         width=50,state=NORMAL)
+GiftCardCharacters.grid(row=6,columnspan=3)
 
 #Give names to the buttons
 Presents = Label(Present_Type_Title_Frame, font=("arial", 18, "bold"), text="Present Types Shapes")
@@ -112,18 +122,55 @@ CubeSizeEntry= Entry(Present_Type_Frame, width=6, textvariable=CubeSize).grid(ro
 CylinderButton= Checkbutton(Present_Type_Frame, text='Cylinder',variable=Cylinder,
                             command=lambda: Cuboid.set(0) if Cuboid.get()==1 else Cube.set(0)).grid(row=1, column=1, sticky=W)
 CylinderHeightLabel= Label(Present_Type_Frame, text='Height',justify='left').grid(row=2, column=1, sticky=W)
-CylinderHeightEntry= Entry(Present_Type_Frame, width=6, textvariable=CubeSize).grid(row=2, column=2, sticky=W)
+CylinderHeightEntry= Entry(Present_Type_Frame, width=6, textvariable=CylinderHeight).grid(row=2, column=2, sticky=W)
 CylinderRadiusLabel= Label(Present_Type_Frame, text='Radius',justify='left').grid(row=3, column=1, sticky=W)
-CylinderRadiusEntry= Entry(Present_Type_Frame, width=6, textvariable=CubeSize).grid(row=3, column=2, sticky=W)
+CylinderRadiusEntry= Entry(Present_Type_Frame, width=6, textvariable=CylinderRadius).grid(row=3, column=2, sticky=W)
 #Cuboid options
 CuboidButton= Checkbutton(Present_Type_Frame, text='Cuboid', variable=Cuboid,
                           command=lambda: Cube.set(0) if Cube.get()==1 else Cylinder.set(0)).grid(row=1, column=3, sticky=W)
 CuboidHeightLabel= Label(Present_Type_Frame, text='Height',justify='left').grid(row=2, column=3, sticky=W)
 CuboidHeightEntry= Entry(Present_Type_Frame, width=6, textvariable=CuboidHeight).grid(row=2, column=4, sticky=W)
 CuboidWidthLabel= Label(Present_Type_Frame, text='Width',justify='left').grid(row=3, column=3, sticky=W)
-CuboidWidthEntry= Entry(Present_Type_Frame, width=6, textvariable=CuboidLength).grid(row=3, column=4, sticky=W)
+CuboidWidthEntry= Entry(Present_Type_Frame, width=6, textvariable=CuboidWidth).grid(row=3, column=4, sticky=W)
 CuboidLengthLabel= Label(Present_Type_Frame, text='Length',justify='left').grid(row=4, column=3, sticky=W)
 CuboidLengthEntry= Entry(Present_Type_Frame, width=6, textvariable=CuboidLength).grid(row=4, column=4, sticky=W)
+
+
+def UpdatePricing():
+    global PriceLabel
+    global Price
+
+    cm2price=0
+
+    if CheapPattern.get()==1:
+        cm2price=5 #price in pence
+
+    if ExpensivePattern.get()==1:
+        cm2price=74
+
+    #if clauses to do pricing calculation
+    size=0
+    pricing=0.00
+    if Cube.get() == 1:
+        size = (4*CubeSize.get()+6)*(3*CubeSize.get()+6) #formulas derived mathematically by 2d visualization of 3d objects
+    if Cylinder.get() ==1:
+        size = (CylinderHeight.get()+6)*(CylinderRadius.get()*2*3.1415+4*CylinderRadius.get()+6)
+    if Cuboid.get()==1:
+        size= (4*(CuboidWidth.get())+6)*(2*CuboidHeight.get()+CuboidLength.get()+6)
+
+    #pricing calculation with all required features
+    pricing = size*cm2price + int(Bow.get())*150 + int(GiftCardFlatRate.get())*50 + int(GiftCardFlatRate.get())*len(str(GiftCardCharacters.get()))*2
+
+    Price.set(pricing)
+
+    PriceLabel.grid_forget()
+    PriceLabel = Label(Price_Frame,font=StandardFont,text='Price: £'+str(Price.get()/100))
+    PriceLabel.grid(row=1)
+
+PriceLabel = Label(Price_Frame,font=StandardFont,text='Price: £0.00')
+PriceLabel.grid(row=1)
+UpdatePriceButton = Button(Price_Frame,text='Update price',command= UpdatePricing).grid(row=0)
+
 
 def Reset_Button(): #After resetting, user cannot choose colours since they must first select a pattern
     Cube.set(0)
