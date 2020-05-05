@@ -11,8 +11,8 @@ colourFill = StringVar()
 Top_Frame = Frame(root, width=1350, height=100, bd=12, relief="raise", bg="#263D42")
 Top_Frame.grid(row=0)
 
-MainTitle = Label(Top_Frame, font=("arial", 30, "bold"), text="WELCOME TO BIBS PRESENT WRAPPING & GIFT CARDS")
-MainTitle.grid()
+MainTitle = Label(Top_Frame, font=("arial", 30, "bold"), text="Bibs Presents")
+MainTitle.grid(padx=100)
 
 BottomMainFrame = Frame(root, width=1350, height=800, bd=4, relief="raise",bg="black")
 BottomMainFrame.grid(row=1)
