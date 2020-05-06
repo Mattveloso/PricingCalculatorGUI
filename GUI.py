@@ -241,30 +241,30 @@ StandardFont=("arial", 18, "bold") #avoids repetition
 #Papertype and calculation of price
 CheapPaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Cheap Paper", variable=CheapPaper, bg="#263D42",
                          onvalue=1, offvalue=0, font=("arial", 18, "bold"),command=CreateCheapPattern).grid(row=1, column=0, sticky=W)
-CheapPaperPriceLabel= Label(Paper_Type_Tops_Frame,text='£0.04p per cm²',bg="#263D42",font=StandardFont).grid(row=1,column=1,sticky=W) #by putting it in another column you get more control over the look of your GUI
+CheapPaperPriceLabel= Label(Paper_Type_Tops_Frame,text='£0.004 per cm²',bg="#263D42",font=StandardFont).grid(row=1,column=1,sticky=W) #by putting it in another column you get more control over the look of your GUI
 #CheapPaper_Entry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=CheapPaper,
 #      width=6, state=NORMAL).grid(row=1, column=1) #remember, code needs to be as easy to read as possible
 
 ExpensivePaper_button = Checkbutton(Paper_Type_Tops_Frame, text="Expensive Paper", bg="#263D42", #remember to add descriptive names, such as _button
                              variable=ExpensivePaper, onvalue=1, offvalue=0,
                              font=("arial", 18, "bold"),command=CreateExpensivePattern).grid(row=2,column=0,sticky=W)
-ExpensiePaperPriceLabel = Label(Paper_Type_Tops_Frame, text='£0.75p per cm²',bg="#263D42", font=StandardFont).grid(row=2,column=1,sticky=W)
+ExpensiePaperPriceLabel = Label(Paper_Type_Tops_Frame, text='£0.0075 per cm²',bg="#263D42", font=StandardFont).grid(row=2,column=1,sticky=W)
 #ExpensivePaperEntry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=ExpensivePaper, width=6,
 #      state=NORMAL).grid(row=2, column=1)
 
 Bow_button = Checkbutton(Paper_Type_Tops_Frame,bg="#263D42", text="Bow", variable=Bow, onvalue=1, offvalue=0,
                   font=("arial", 18, "bold")).grid(row=3, column=0, sticky=W)
-BowPriceLabel=Label(Paper_Type_Tops_Frame,bg="#263D42", text='£1.50p',font=StandardFont).grid(row=3,column=1,sticky=W)
+BowPriceLabel=Label(Paper_Type_Tops_Frame,bg="#263D42", text='£1.50',font=StandardFont).grid(row=3,column=1,sticky=W)
 #Bow_Entry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=Bow, width=6, state=NORMAL).grid(row=3,
 #                                                                                                          column=1)
 GiftCardFlatRate_button = Checkbutton(Paper_Type_Tops_Frame, text="Gift Card",
                                variable=GiftCardFlatRate, onvalue=1, offvalue=0,bg="#263D42",
                                font=("arial", 18, "bold")).grid(row=4,column=0, sticky=W)
-GiftCardFlatRateLabel = Label(Paper_Type_Tops_Frame,bg="#263D42", text='(Flat Rate: £0.50p)',font=StandardFont).grid(row=4,column=1,sticky=W)
+GiftCardFlatRateLabel = Label(Paper_Type_Tops_Frame,bg="#263D42", text='(Flat Rate: 50p)',font=StandardFont).grid(row=4,column=1,sticky=W)
 #GiftCardFlatRate_Entry=Entry(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), textvariable=GiftCardFlatRate,
 #      width=6, state=NORMAL).grid(row=4, column=1)
 
-GiftCardPerCharacterRate_button = Checkbutton(Paper_Type_Tops_Frame,bg="#263D42", text="Gift Card (Per Character Rate £0.02p)",
+GiftCardPerCharacterRate_button = Checkbutton(Paper_Type_Tops_Frame,bg="#263D42", text="Gift Card (Per Character Rate £0.02)",
                                        variable=GiftCardPerCharacterRate,
                                        font=("arial", 18, "bold")).grid(row=5,column=0, sticky=W)
 GiftCardCharacters=Entry(Paper_Type_Tops_Frame, font=("arial", 12), textvariable=GiftCardPerCharacter_Characters,
@@ -305,13 +305,13 @@ def UpdatePricing():
     cm2price=0
 
     if CheapPattern.get()==1:
-        cm2price=5 #price in pence
+        cm2price=0.4 #price in pence
 
     if ExpensivePattern.get()==1:
-        cm2price=74
+        cm2price=0.75
 
     #if clauses to do pricing calculation
-    size=0
+    size=0.00
     pricing=0.00
     if Cube.get() == 1:
         size = (4*CubeSize.get()+6)*(3*CubeSize.get()+6) #formulas derived mathematically by 2d visualization of 3d objects
