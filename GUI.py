@@ -163,7 +163,7 @@ def CreateCheapPattern():
     ExpensivePaper.set(0)
     CheapPattern.set(1)##
     CheapPaper.set(1)
-    ColorReset()
+    #ColorReset()
     CheapPaper.set(1)
 #\M
 
@@ -232,7 +232,7 @@ def CreateExpensivePattern(): #M: Also avoid, but it's small enough to keep, rem
     CheapPaper.set(0)
     ExpensivePattern.set(1)
     ExpensivePaper.set(1)
-    ColorReset()
+    #ColorReset()
 
 Present = Label(Paper_Type_Tops_Frame, font=("arial", 16, "bold"), text="PAPER TYPE, BOW & CARDS",bg="#263D42",foreground="white")
 Present.grid(row=0, column=0, columnspan=2)
@@ -297,7 +297,6 @@ CuboidWidthEntry= Entry(Present_Type_Frame, width=6, textvariable=CuboidWidth).g
 CuboidLengthLabel= Label(Present_Type_Frame, text='Length',justify='left').grid(row=4, column=3, sticky=W)
 CuboidLengthEntry= Entry(Present_Type_Frame, width=6, textvariable=CuboidLength).grid(row=4, column=4, sticky=W)
 
-
 def UpdatePricing():
     global PriceLabel
     global Price
@@ -311,6 +310,7 @@ def UpdatePricing():
         cm2price=0.75
 
     #if clauses to do pricing calculation
+    global size
     size=0.00
     pricing=0.00
     if Cube.get() == 1:
@@ -329,10 +329,40 @@ def UpdatePricing():
     PriceLabel = Label(Price_Frame,font=StandardFont,text='Price: £'+str(Price.get()/100))
     PriceLabel.grid(row=1)
 
-PriceLabel = Label(Price_Frame,font=StandardFont,text='Price: £0.00')
+#prints the price to a file "WrappingQuote.txt" in same directory
+def PrintPrice():
+    SaveFile=open("WrappingQuote.txt","w+")
+    SaveFile.write("Price: "+str(Price.get()/100)+'\n')
+    PriceWithoutVAT=(Price.get()/100)*0.8
+    SaveFile.write("Price without VAT: "+"{:.2f}".format(PriceWithoutVAT)+'\n') #this makes sure it rounds up the pence
+    SaveFile.write("-------------------------\n")
+    #if clause to check shape before printing
+    if Cube.get() == 1:
+        SaveFile.write("Shape: Cube"+'\n')
+    if Cylinder.get() ==1:
+        SaveFile.write("Shape: Cylinder"+'\n')
+    if Cuboid.get()==1:
+        SaveFile.write("Shape: Cuboid"+'\n')
+
+    SaveFile.write("Size of wrapping paper: "+str(size)+" cm2"+'\n')
+    SaveFile.write("Bow: "+ str(int(Bow.get())==1)+'\n')
+    SaveFile.write("Gift Card: " + str(int(GiftCardFlatRate.get())==1)+'\n')
+
+    if int(GiftCardFlatRate.get())==1:
+        SaveFile.write("Message: "+GiftCardCharacters.get()+'\n')
+
+    if CheapPattern.get()==1:
+        SaveFile.write("Pattern: Cheaper option\n")
+    if ExpensivePattern.get()==1:
+        SaveFile.write("Pattern: Expensive option\n")
+
+    SaveFile.write("Color: "+ colourFill.get())
+    SaveFile.close()
+
+PriceLabel = Label(Price_Frame,font=StandardFont,text='Price: 0.00')
 PriceLabel.grid(row=1)
 UpdatePriceButton = Button(Price_Frame,text='Update price',command= UpdatePricing).grid(row=0)
-
+PrintToFileButton= Button(Price_Frame,text="Print Price to txt", command=PrintPrice).grid(row=3)
 
 
 

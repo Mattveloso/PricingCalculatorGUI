@@ -1,6 +1,10 @@
 #use this one for testing random code! easier to test than changing your entire other program
 
+f= open("guru99.txt","w+")
+f.write("This is line %d\r\n" % (2))
+f.close()
 
+# %%
 from tkinter import *
 
 root = Tk()

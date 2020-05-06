@@ -1,0 +1,10 @@
+Price: 243.22
+Price without VAT: 194.58
+-------------------------
+Shape: Cube
+Size of wrapping paper: 32136 cm2
+Bow: True
+Gift Card: True
+Message: Thank you!
+Pattern: Expensive option
+Color: LightSeaGreen
