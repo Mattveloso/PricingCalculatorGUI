@@ -364,8 +364,6 @@ PriceLabel.grid(row=1)
 UpdatePriceButton = Button(Price_Frame,text='Update price',command= UpdatePricing).grid(row=0)
 PrintToFileButton= Button(Price_Frame,text="Print Price to txt", command=PrintPrice).grid(row=3)
 
-
-
 Check_Cheap = Checkbutton(Colour_Frame_Button, text='cheap pattern', variable=CheapPattern, command=CreateCheapPattern)
 Check_Cheap.grid(row=0, column=0, sticky=NSEW)
 Check_Expensive = Checkbutton(Colour_Frame_Button, text='expensive pattern', variable=ExpensivePattern,
